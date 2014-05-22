@@ -1,7 +1,7 @@
 ---
 
 - name: Get iptables rules
-  shell: iptables-save > {{iptables_rule_path}}
+  shell: /sbin/iptables-save > {{iptables_rule_path}}
 
 - name: Add iptables simple rules
   lineinfile:
