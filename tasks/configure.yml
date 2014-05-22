@@ -3,7 +3,7 @@
 - name: Get iptables rules
   shell: iptables-save > {{iptables_rule_path}}
 
-- name: Add iptables rules
+- name: Add iptables simple rules
   lineinfile:
     dest={{iptables_rule_path}}
     regexp="^-A INPUT -p {{item.protocol}} -m {{item.protocol}} --dport {{item.port}} -j ACCEPT$"
@@ -11,6 +11,27 @@
     insertafter="^:OUTPUT ACCEPT \[\d*:\d*\]$"
   notify: iptables reload
   with_items: iptables_rules
+
+- name: Add iptables raw rules
+  lineinfile:
+    dest={{iptables_rule_path}}
+    regexp="^{{item}}$"
+    line="{{item}}"
+    insertafter="^:OUTPUT ACCEPT \[\d*:\d*\]$"
+  notify: iptables reload
+  with_items: iptables_raw_rules
+
+- name: Enable local traffic
+  lineinfile:
+    dest={{iptables_rule_path}}
+    regexp="^{{item}}$"
+    line="{{item}}"
+    insertafter="^:OUTPUT ACCEPT \[\d*:\d*\]$"
+  notify: iptables reload
+  with_items:
+    - -A INPUT -i lo -j ACCEPT
+    - -A OUTPUT -o lo -j ACCEPT
+  when: iptables_allow_lo
 
 - name: Enable autosave - pt. 1
   template: src=iptables_load.j2 dest=/etc/network/if-up.d/iptables_load owner=root group=root mode=751
