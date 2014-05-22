@@ -2,3 +2,6 @@
 
 - name: iptables restart
   service: name=ufw state=restarted
+
+- name: iptables reload
+  shell: "/sbin/iptables-restore < {{iptables_rule_path}}"

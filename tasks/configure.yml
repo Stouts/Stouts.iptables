@@ -1,14 +1,21 @@
 ---
 
 - name: Get iptables rules
-  shell: iptables -L
-  register: iptables_currents
+  shell: iptables-save > {{iptables_rule_path}}
 
 - name: Add iptables rules
-  command: /sbin/iptables {{item}}
-  notify: iptables restart
-  when: item not in iptables_currents.stdout
+  lineinfile:
+    dest={{iptables_rule_path}}
+    regexp="^-A INPUT -p {{item.protocol}} -m {{item.protocol}} --dport {{item.port}} -j ACCEPT$"
+    line="-A INPUT -p {{item.protocol}} -m {{item.protocol}} --dport {{item.port}} -j ACCEPT"
+    insertafter="^:OUTPUT ACCEPT \[\d*:\d*\]$"
+  notify: iptables reload
   with_items: iptables_rules
 
-- name: Save iptables
-  command: /sbin/iptables-save
+- name: Enable autosave - pt. 1
+  template: src=iptables_load.j2 dest=/etc/network/if-up.d/iptables_load owner=root group=root mode=751
+  when: iptables_autosave
+
+- name: Enable autosave - pt. 2
+  template: src=iptables_save.j2 dest=/etc/network/if-down.d/iptables_save owner=root group=root mode=751
+  when: iptables_autosave

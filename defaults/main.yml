@@ -1,4 +1,9 @@
 ---
 
 iptables_enabled: yes                   # The role is enabled
+iptables_autosave: yes                  # Save and load iptables rules when system is rebooted
+iptables_rule_path: /etc/iptables.rules # Path to rule file
 iptables_rules: []                      # List of rules
+                                        # Ex. iptables_rules:
+                                        #     - { protocol: tcp, port:80 }
+                                        #     - { protocol: tcp, port:22 }
