@@ -1,4 +1,4 @@
 ---
 
 - name: Ensure iptables is installed
-  deb: pkg=iptables
+  apt: pkg=iptables
