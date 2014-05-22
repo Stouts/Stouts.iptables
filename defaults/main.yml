@@ -1,0 +1,4 @@
+---
+
+iptables_enabled: yes                   # The role is enabled
+iptables_rules: []                      # List of rules

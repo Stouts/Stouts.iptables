@@ -1,0 +1,12 @@
+---
+
+- include: install.deb.yml
+  when: ansible_os_family == 'Debian'
+
+- include: install.yml.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure iptables is started
+  service: name=iptables state=started enabled=yes
+
+- include: configure.yml

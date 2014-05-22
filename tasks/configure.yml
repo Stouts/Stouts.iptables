@@ -1,0 +1,14 @@
+---
+
+- name: Get iptables rules
+  shell: iptables -L
+  register: iptables_currents
+
+- name: Add iptables rules
+  command: /sbin/iptables {{item}}
+  notify: iptables restart
+  when: item not in iptables_currents.stdout
+  with_items: iptables_rules
+
+- name: Save iptables
+  command: /sbin/iptables-save

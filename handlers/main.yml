@@ -1,0 +1,4 @@
+---
+
+- name: iptables restart
+  service: name=ufw state=restarted
