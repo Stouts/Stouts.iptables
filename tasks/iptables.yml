@@ -1,9 +1,17 @@
 ---
 
-- include: install.deb.yml
+- name: Ensure iptables is installed (debian)
+  apt: pkg=iptables
   when: ansible_os_family == 'Debian'
 
-- include: install.yum.yml
+- name: Ensure iptables is installed (redhat)
+  yum: pkg=iptables
   when: ansible_os_family == 'RedHat'
 
-- include: configure.yml
+- name: Prepare iptables rules
+  template: dest={{iptables_rule_path}} src=iptables.rules.j2 owner=root group=root mode=0744
+  notify:
+    - iptables load
+
+- name: Autoload the rules
+  template: src=iptables_load.j2 dest=/etc/network/if-up.d/iptables_load owner=root group=root mode=751

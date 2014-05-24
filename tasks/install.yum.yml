@@ -1,5 +1,0 @@
----
-
-- name: Ensure iptables is installed
-  yum: pkg=iptables
-
