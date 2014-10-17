@@ -9,10 +9,10 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Prepare iptables rules
-  template: dest={{iptables_rules_path}} src=/etc/iptables.rules.j2 owner=root group=root mode=0744
+  template: dest={{iptables_rules_path}} src=etc/iptables.rules.j2 owner=root group=root mode=0744
   notify:
     - iptables load
 
 - name: Autoload the rules
-  template: src=/etc/network/if-up.d/iptables_load.j2 dest={{iptables_load_path}} owner=root group=root mode=751
+  template: src=etc/network/if-up.d/iptables_load.j2 dest={{iptables_load_path}} owner=root group=root mode=751
   when: iptables_load_path
