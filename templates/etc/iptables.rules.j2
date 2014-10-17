@@ -23,7 +23,7 @@ iptables -t nat -I PREROUTING -p udp --dport {{forward.from}} -j REDIRECT --to-p
 iptables -A INPUT -p tcp -m tcp --dport {{port}} -j ACCEPT
 {% endfor %}
 {% for port in iptables_allowed_udp_ports %}
-iptables -A INPUT -p tcp -m udp --dport {{port}} -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport {{port}} -j ACCEPT
 {% endfor %}
 
 # Accept icmp ping requests.
