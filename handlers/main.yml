@@ -1,4 +1,4 @@
 ---
 
 - name: iptables load
-  shell: "{{iptables_rule_path}}"
+  shell: "{{iptables_rules_path}}"
