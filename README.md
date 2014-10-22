@@ -1,7 +1,9 @@
 Stouts.iptables
 ===============
 
-[![Build Status](https://travis-ci.org/Stouts/Stouts.iptables.png)](https://travis-ci.org/Stouts/Stouts.iptables)
+[![Build Status](http://img.shields.io/travis/Stouts/Stouts.iptables.svg?style=flat-square)](https://travis-ci.org/Stouts/Stouts.iptables)
+[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.iptables-blue.svg?style=flat-square)](https://galaxy.iptables.com/list#/roles/920)
+[![Tag](http://img.shields.io/github/tag/Stouts/Stouts.iptables.svg?style=flat-square)]()
 
 Ansible role which manage iptables
 
