@@ -46,5 +46,7 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -m limit --limit 15/minute -j LOG --log-level 7 --log-prefix "Dropped by iptables: "
 {% endif %}
 
+{% if iptables_deny_all %}
 # Drop all other
 iptables -A INPUT -j DROP
+{% endif %}
