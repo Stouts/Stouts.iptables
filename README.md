@@ -14,6 +14,8 @@ THe role variables and default values.
 iptables_enabled: yes                   # The role is enabled
 iptables_logging: yes                   # Log dropped packets
 
+iptables_deny_all : yes                 # deny all except allowed
+
 iptables_rules_path: /etc/iptables.rules # Path to rule file
 iptables_load_path: /etc/network/if-up.d/iptables_load # Set empty for prevent loading
 
