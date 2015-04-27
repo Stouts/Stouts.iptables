@@ -35,7 +35,7 @@ iptables -A INPUT -p udp --sport 123 -j ACCEPT
 
 # Raw roles
 {% for rule in iptables_raw_rules %}
-{{rule}}
+iptables {{rule}}
 {% endfor %}
 
 # Allow established connections:
