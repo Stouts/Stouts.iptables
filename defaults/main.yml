@@ -3,6 +3,8 @@
 iptables_enabled: yes                   # The role is enabled
 iptables_logging: yes                   # Log dropped packets
 
+iptables_flush_all: yes                 # Flush and remove all chains
+
 iptables_deny_all : yes                 # deny all except allowed
 
 iptables_rules_path: /etc/iptables.rules # Path to rule file
