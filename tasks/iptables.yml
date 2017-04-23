@@ -5,11 +5,11 @@
 
 - name: Ensure iptables is installed (debian)
   apt:  name=iptables
-  when: ansible_os_family == 'Debian'
+  when: "{{ ansible_os_family == 'Debian' }}"
 
 - name: Ensure iptables is installed (redhat)
   yum:  name=iptables
-  when: ansible_os_family == 'RedHat'
+  when: "{{ ansible_os_family == 'RedHat' }}"
 
 - name: Ensure that config directory is exists
   file: state=directory path="{{ iptables_confdir }}"
@@ -20,4 +20,4 @@
 
 - name: Autoload the rules
   template: src=etc/network/if-up.d/iptables_load.j2 dest={{iptables_load_path}} owner=root group=root mode=751
-  when: iptables_load_path != ""
+  when: "{{ iptables_load_path != '' }}"
