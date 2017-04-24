@@ -20,4 +20,4 @@
 
 - name: Autoload the rules
   template: src=etc/network/if-up.d/iptables_load.j2 dest={{iptables_load_path}} owner=root group=root mode=751
-  when: iptables_load_path
+  when: iptables_load_path != ""
