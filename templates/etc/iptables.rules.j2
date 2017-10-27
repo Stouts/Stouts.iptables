@@ -39,7 +39,7 @@ iptables -A INPUT -p icmp -j ACCEPT
 iptables -A OUTPUT -p udp --dport 123 -j ACCEPT
 iptables -A INPUT -p udp --sport 123 -j ACCEPT
 
-# Raw roles
+# Raw rules
 {% for rule in iptables_raw_rules %}
 iptables {{rule}}
 {% endfor %}
