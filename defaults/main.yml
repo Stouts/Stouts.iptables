@@ -9,7 +9,7 @@ iptables_deny_all : yes                 # Deny all except allowed
 iptables_confdir: /etc/iptables
 iptables_rules_path: "{{ iptables_confdir }}/rules.v4"  # Path to rule file
 
-iptables_load_path: /etc/network/if-up.d/iptables_load # Set empty for prevent loading
+iptables_load_path: /etc/network/if-up.d/iptables_load # Set empty to prevent loading
 
 iptables_allowed_tcp_ports: [22, 25, 80, 443] # List of allowed tcp ports
 iptables_forwarded_tcp_ports: []        # Forward tcp ports
