@@ -11,6 +11,10 @@
   yum:  name=iptables
   when: ansible_os_family == 'RedHat'
 
+- name: Ensure ufw is not installed (debian)
+  apt:  name=ufw state=absent purge=yes
+  when: ansible_os_family == 'Debian'
+
 - name: Ensure that config directory is exists
   file: state=directory path="{{ iptables_confdir }}"
 
