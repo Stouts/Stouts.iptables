@@ -32,7 +32,7 @@ iptables -A INPUT -p tcp -m tcp --dport {{port}} -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport {{port}} -j ACCEPT
 {% endfor %}
 
-# Accept icmp ping requests.
+# Accept ICMP packets (it allows ping for example)
 iptables -A INPUT -p icmp -j ACCEPT
 
 # Allow NTP traffic for time synchronization.
